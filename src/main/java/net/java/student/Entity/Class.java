@@ -3,6 +3,8 @@ package net.java.student.Entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -23,20 +25,22 @@ public class Class {
     @Column(name = "Teacher_master")
     private String Teacher_master;
 
-    @OneToOne(mappedBy = "aClass")
-    private Student student;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "shoolYear_id")
+    @ManyToOne
+    @JoinColumn(name = "schoolyear_id")
     private SchoolYear schoolYear;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "studyProgram_id")
     private StudyProgram studyProgram;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "aClass",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Student> students;
 
 
 
@@ -65,12 +69,20 @@ public class Class {
         this.STT = STT;
     }
 
-    public SchoolYear getSchoolYear() {
-        return schoolYear;
+    public String getTeacher_master() {
+        return Teacher_master;
     }
 
-    public void setSchoolYear(SchoolYear schoolYear) {
-        this.schoolYear = schoolYear;
+    public void setTeacher_master(String teacher_master) {
+        Teacher_master = teacher_master;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     public StudyProgram getStudyProgram() {
@@ -81,19 +93,19 @@ public class Class {
         this.studyProgram = studyProgram;
     }
 
+    public SchoolYear getSchoolYear() {
+        return schoolYear;
+    }
+
+    public void setSchoolYear(SchoolYear schoolYear) {
+        this.schoolYear = schoolYear;
+    }
+
     public Department getDepartment() {
         return department;
     }
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public String getTeacher_master() {
-        return Teacher_master;
-    }
-
-    public void setTeacher_master(String teacher_master) {
-        Teacher_master = teacher_master;
     }
 }

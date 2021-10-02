@@ -2,6 +2,7 @@ package net.java.student.Controller;
 
 
 import net.java.student.Entity.LoginStudent;
+import net.java.student.Repository.LoginRepository;
 import net.java.student.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class LoginController {
     @Autowired
     private LoginService service;
 
+
     @GetMapping("/logins")
     public List<LoginStudent> list(){
         return service.list();
@@ -35,9 +37,9 @@ public class LoginController {
     public ResponseEntity<LoginStudent> getByID(@PathVariable(value = "id") Integer id){
         try{
             LoginStudent loginStudent = service.get(id);
-            return new ResponseEntity<LoginStudent>(loginStudent,HttpStatus.OK);
+            return new ResponseEntity<>(loginStudent,HttpStatus.OK);
         }catch (NoSuchElementException e){
-            return new ResponseEntity<LoginStudent>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

@@ -25,12 +25,12 @@ public class SubjectList {
     @Column(name = "tiet_ly_thuyet")
     private Integer Tiet_ly_thuyet;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "point_id")
-    private Point point;
-
-    @OneToMany(mappedBy = "subjectList",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Schedule> schedule;
+//    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+//    @JoinColumn(name = "point_id")
+//    private Point point;
+//
+//    @OneToMany(mappedBy = "subjectList",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<Schedule> schedule;
 
 
     public Integer getId() {
@@ -81,19 +81,19 @@ public class SubjectList {
         Tiet_ly_thuyet = tiet_ly_thuyet;
     }
 
-    public Point getPoint() {
-        return point;
-    }
-
-    public void setPoint(Point point) {
-        this.point = point;
-    }
-
-    public List<Schedule> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(List<Schedule> schedule) {
-        this.schedule = schedule;
-    }
+//    public Point getPoint() {
+//        return point;
+//    }
+//
+//    public void setPoint(Point point) {
+//        this.point = point;
+//    }
+//
+//    public List<Schedule> getSchedule() {
+//        return schedule;
+//    }
+//
+//    public void setSchedule(List<Schedule> schedule) {
+//        this.schedule = schedule;
+//    }
 }

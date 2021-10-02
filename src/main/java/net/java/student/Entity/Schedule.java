@@ -1,6 +1,8 @@
 package net.java.student.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -19,9 +21,10 @@ public class Schedule {
     @Column(name = "position")
     private String Position;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subjectList_id")
-    private SubjectList subjectList;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
     public Integer getId() {
         return id;
@@ -45,5 +48,13 @@ public class Schedule {
 
     public void setPosition(String position) {
         Position = position;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }

@@ -17,17 +17,13 @@ public class Department {
     @Column(name = "Organize_year")
     private Integer Organize_year;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Class> aClass;
 
-//    @OneToOne(mappedBy = "department")
-//    private Teacher teacher;
-
-//    @OneToOne(mappedBy = "department1")
-//    private Subject subject;
-
-
-        @OneToMany(targetEntity = Subject.class,cascade = CascadeType.ALL)
-        @JoinColumn(name = "subject_id",referencedColumnName = "id")
-        private List<Subject> subjects;
+    @JsonIgnore
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Subject> subject;
 
 
 
@@ -59,11 +55,20 @@ public class Department {
         this.name = name;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public List<Class> getaClass() {
+        return aClass;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
+    public void setaClass(List<Class> aClass) {
+        this.aClass = aClass;
     }
+
+    public List<Subject> getSubject() {
+        return subject;
+    }
+
+    public void setSubject(List<Subject> subject) {
+        this.subject = subject;
+    }
+
 }

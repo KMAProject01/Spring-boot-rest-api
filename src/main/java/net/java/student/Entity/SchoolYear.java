@@ -1,7 +1,10 @@
 package net.java.student.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "SchoolYear")
@@ -15,8 +18,9 @@ public class SchoolYear {
     @Column(name = "yearEnd")
     private Integer yearEnd;
 
-    @OneToOne(mappedBy = "schoolYear")
-    private Class aClass;
+    @JsonIgnore
+    @OneToMany(mappedBy = "schoolYear",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Class> aClass;
 
 
 
@@ -42,5 +46,13 @@ public class SchoolYear {
 
     public void setYearEnd(Integer yearEnd) {
         this.yearEnd = yearEnd;
+    }
+
+    public List<Class> getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(List<Class> aClass) {
+        this.aClass = aClass;
     }
 }

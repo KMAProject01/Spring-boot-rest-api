@@ -28,6 +28,9 @@ public class FileStorageProperties {
     @Column(name = "upload_dir")
     private String upload_Dir;
 
+    @OneToOne(mappedBy = "picture")
+    private Student student;
+
 
 
 

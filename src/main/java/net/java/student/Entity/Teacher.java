@@ -1,7 +1,10 @@
 package net.java.student.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
@@ -18,9 +21,10 @@ public class Teacher {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne(mappedBy = "teacher")
-    private Subject subject;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "teacher",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Subject> subject;
 
 
 
@@ -48,5 +52,11 @@ public class Teacher {
         this.phone = phone;
     }
 
+    public List<Subject> getSubject() {
+        return subject;
+    }
 
+    public void setSubject(List<Subject> subject) {
+        this.subject = subject;
+    }
 }

@@ -16,7 +16,7 @@ public class LoginStudent {
     private String PassWord;
 
     @OneToOne
-    @JoinColumn(name = "student_id",referencedColumnName = "id")
+    @JoinColumn(name = "student_id")
     private Student student;
 
     public Integer getId() {

@@ -47,20 +47,28 @@ public class Student {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "class_id")
     private Class aClass;
+
+    @OneToOne(mappedBy = "student")
+    private LoginStudent loginStudent;
 
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "picture_id")
     private FileStorageProperties picture;
 
 
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Subject> subject;
 
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "cp_id",referencedColumnName = "id")
-//    List<Subject> subjects = new ArrayList<>();
+
+
+
+
+
+
 
 
 
@@ -170,5 +178,13 @@ public class Student {
 
     public void setPicture(FileStorageProperties picture) {
         this.picture = picture;
+    }
+
+    public List<Subject> getSubject() {
+        return subject;
+    }
+
+    public void setSubject(List<Subject> subject) {
+        this.subject = subject;
     }
 }

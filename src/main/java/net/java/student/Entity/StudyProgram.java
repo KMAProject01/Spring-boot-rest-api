@@ -1,7 +1,9 @@
 package net.java.student.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.security.auth.Subject;
+import java.util.List;
 
 @Entity
 @Table(name = "StudyProgram")
@@ -15,6 +17,13 @@ public class StudyProgram {
     private String name_program;
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "studyProgram",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Class> classes;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "studyProgram",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Subject> subjects;
 
     public Integer getId() {
         return id;
@@ -32,5 +41,19 @@ public class StudyProgram {
         this.name_program = name_program;
     }
 
+    public List<Class> getClasses() {
+        return classes;
+    }
 
+    public void setClasses(List<Class> classes) {
+        this.classes = classes;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
 }

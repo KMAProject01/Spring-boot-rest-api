@@ -1,5 +1,7 @@
 package net.java.student.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,8 +18,9 @@ public class Point {
     @Column(name = "diemKTHp")
     private Float diemKTHp;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "point")
-    private SubjectList subjectList;
+    private Subject subject;
 
 
 
@@ -55,5 +58,11 @@ public class Point {
         this.diemKTHp = diemKTHp;
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
 
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 }
