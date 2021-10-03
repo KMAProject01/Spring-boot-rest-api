@@ -27,6 +27,11 @@ public class Teacher {
     private List<Subject> subject;
 
 
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+
 
     public Integer getId() {
         return id;
@@ -58,5 +63,13 @@ public class Teacher {
 
     public void setSubject(List<Subject> subject) {
         this.subject = subject;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

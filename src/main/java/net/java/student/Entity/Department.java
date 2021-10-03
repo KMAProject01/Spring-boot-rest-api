@@ -25,6 +25,10 @@ public class Department {
     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Subject> subject;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Teacher> teachers;
+
 
 
 
@@ -71,4 +75,11 @@ public class Department {
         this.subject = subject;
     }
 
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
 }

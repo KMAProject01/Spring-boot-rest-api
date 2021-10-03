@@ -14,6 +14,6 @@ public interface FileStoragePropertiesRepository extends JpaRepository<FileStora
     @Query("Select a from FileStorageProperties a where id = ?1 and file_type = ?2")
     FileStorageProperties checkFileByUserId(Integer userId, String docType);
 
-    @Query("Select fileName from FileStorageProperties a where user_id = ?1 and document_type = ?2")
+    @Query("Select fileName from FileStorageProperties a where user_id = ?1 and file_type = ?2")
     String getUploadFilePath(Integer userId, String docType);
 }
